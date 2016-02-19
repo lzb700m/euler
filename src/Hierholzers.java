@@ -7,9 +7,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * 
+ * @author Peng Li
+ *
+ */
 public class Hierholzers {
-	private static Timer timer = new Timer();
-
 	/**
 	 * Return an Euler tour of g
 	 * 
@@ -251,11 +254,7 @@ public class Hierholzers {
 		Graph g = Graph.readGraph(sc, false);
 
 		/* find tour and print tour */
-		timer.start();
 		List<Edge> result = findEulerTour(g);
-		timer.end();
-		System.out.println(timer);
-
 		for (Edge e : result) {
 			System.out.println(e);
 		}
@@ -272,10 +271,6 @@ public class Hierholzers {
 				startVertex = (x.name < y.name) ? x : y;
 			}
 		}
-		timer.start();
-		System.out.println(verifyTour(g, result, startVertex));
-		timer.end();
-		System.out.println(timer);
-
+		verifyTour(g, result, startVertex);
 	}
 }

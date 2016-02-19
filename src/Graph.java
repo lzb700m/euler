@@ -1,7 +1,7 @@
 /**
  * Class to represent a graph
  * 
- * @author LiP add printGraph, printGraphTranspose method
+ * @author Peng Li add printGraph, printGraphTranspose method
  */
 
 import java.util.ArrayList;
