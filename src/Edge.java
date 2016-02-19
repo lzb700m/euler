@@ -1,5 +1,3 @@
-
-
 /**
  * Class that represents an arc in a Graph
  *
@@ -40,6 +38,20 @@ public class Edge {
 			return To;
 		} else {
 			return From;
+		}
+	}
+
+	/**
+	 * Check if the edge contains vertex as its start or end node
+	 * 
+	 * @param u
+	 * @return
+	 */
+	public boolean containsVertex(Vertex u) {
+		if (From == u || To == u) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 

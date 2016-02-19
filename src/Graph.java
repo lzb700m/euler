@@ -1,5 +1,3 @@
-
-
 /**
  * Class to represent a graph
  * 
@@ -13,7 +11,12 @@ import java.util.Scanner;
 
 class Graph implements Iterable<Vertex> {
 	public List<Vertex> verts; // array of vertices
-	public int numNodes; // number of verices in the graph
+	public int numNodes; // number of vertices in the graph
+	/*
+	 * number of vertices that have been exhausted during the finding of Euler
+	 * tour, "exhausted" means that all edges have been added to the tour
+	 */
+	public int exhasustedVertexCount = 0;
 
 	/**
 	 * Constructor for Graph
@@ -138,6 +141,10 @@ class Graph implements Iterable<Vertex> {
 		}
 		in.close();
 		return g;
+	}
+
+	public boolean isExhausted() {
+		return exhasustedVertexCount == verts.size() - 1;
 	}
 
 	public void printGraph() {
