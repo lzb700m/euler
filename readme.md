@@ -142,7 +142,7 @@ A better approach is as follows:
 
 Add a boolean field in Edge class indicating the edge has been added into the Euler tour:
 
-```
+```java
 public class Edge {
 	...
 	public boolean seen; // indicator if been visited
@@ -152,7 +152,7 @@ public class Edge {
 
 Use array in Vertex class to store the edges adjacent to it, and created a index variable to track what is the next unvisited edge in the adjacent list:
 
-```
+```java
 public class Vertex {
 	...
 	public List<Edge> Adj // adjacency list; use ArrayList
