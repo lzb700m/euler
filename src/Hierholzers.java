@@ -9,16 +9,18 @@ import java.util.Scanner;
 
 /**
  * 
- * @author Peng Li
+ * @author Peng Li, Nan Zhang
  *
  */
 public class Hierholzers {
+	// private static final Timer timer = new Timer();
+
 	/**
 	 * Return an Euler tour of g
 	 * 
 	 * @param g
 	 *            input graph
-	 * @return Euler tour of edges if exists, empty list if not
+	 * @return Euler tour of edges if exists, empty list if g is not Eulerian
 	 */
 	public static List<Edge> findEulerTour(Graph g) {
 		// List of vertices with odd degree
@@ -48,7 +50,7 @@ public class Hierholzers {
 			}
 		} else {
 			// graph is not Eulerian, return an empty list
-			return new LinkedList<Edge>();
+			throw new IllegalArgumentException("Graph is not Eulerian");
 		}
 
 		/*
@@ -252,16 +254,28 @@ public class Hierholzers {
 			sc = new Scanner(System.in);
 		}
 		Graph g = Graph.readGraph(sc, false);
+		List<Edge> result = new LinkedList<Edge>();
 
 		/* find tour and print tour */
-		List<Edge> result = findEulerTour(g);
-		for (Edge e : result) {
-			System.out.println(e);
+		try {
+			// timer.start();
+			result = findEulerTour(g);
+			// timer.end();
+			// System.out.println("Find Euler tour:\n" + timer);
+			for (Edge e : result) {
+				System.out.println(e);
+			}
+		} catch (Exception ex) {
+			System.out.println("Graph is not Eulerian");
 		}
 
 		/* given a graph and a tour, find the start vertex and verify tour */
 		List<Vertex> oddEdgeVertices = new LinkedList<>();
-		Vertex startVertex = null; // vertex with smallest index
+		/*
+		 * any vertex for Euler circle, vertex with smallest index for Euler
+		 * path
+		 */
+		Vertex startVertex = null;
 		if (isEulerian(g, oddEdgeVertices)) {
 			if (oddEdgeVertices.size() == 0) {
 				startVertex = g.verts.get(1);
@@ -271,6 +285,9 @@ public class Hierholzers {
 				startVertex = (x.name < y.name) ? x : y;
 			}
 		}
+		// timer.start();
 		verifyTour(g, result, startVertex);
+		// timer.end();
+		// System.out.println("Verify Euler tour:\n" + timer);
 	}
 }
